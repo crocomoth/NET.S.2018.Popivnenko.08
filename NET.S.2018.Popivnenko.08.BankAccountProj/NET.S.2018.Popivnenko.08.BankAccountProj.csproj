@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IBankAccount.cs" />
+    <Compile Include="API\AbstractBankAccount.cs" />
     <Compile Include="exception\InsufficientFundsException.cs" />
     <Compile Include="model\BankAccount.cs" />
     <Compile Include="model\BankRepository.cs" />

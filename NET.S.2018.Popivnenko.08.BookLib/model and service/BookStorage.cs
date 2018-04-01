@@ -26,7 +26,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
         }
 
         /// <summary>
-        /// Sets the path where Books will be saved or looked upon.
+        /// Sets the <see cref="path"/> where Books will be saved or looked upon.
         /// </summary>
         /// <param name="dest">Path to the file which can also not exist.</param>
         public void SetPath(string dest)
@@ -35,8 +35,8 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
         }
 
         /// <summary>
-        /// Saves List of Books to file specified by path.
-        /// throws ArgumentNullException if parameter is null.
+        /// Saves List of Books to file specified by <see cref="path"/>.
+        /// throws <see cref="ArgumentNullException"/> if parameter is null.
         /// </summary>
         /// <param name="books">List to be saved.</param>
         public void SaveToFile(List<Book> books)
@@ -56,7 +56,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
         }
 
         /// <summary>
-        /// Loads list of Book from a file specified by path.
+        /// Loads list of <see cref="Book"/> from a file specified by <see cref="path"/>.
         /// </summary>
         /// <returns>List of loaded Books.</returns>
         public List<Book> LoadFromFile()
