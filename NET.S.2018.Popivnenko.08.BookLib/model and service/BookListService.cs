@@ -116,5 +116,61 @@ namespace NET.S._2018.Popivnenko._08.BookLib
 
             return result;
         }
+
+        public List<Book> SortByTag(Tags tag)
+        {
+            List<Book> result = new List<Book>();
+            switch (tag)
+            {
+                case Tags.year:
+                    {
+                        Book[] booksArray = books.ToArray();
+                        SortByYear(booksArray);
+                        result = booksArray.ToList();
+                        break;
+                    }
+                case Tags.price:
+                    {
+                        Book[] booksArray = books.ToArray();
+                        DefaultBooksSorting(booksArray);
+                        result = booksArray.ToList();
+                        break;
+                    }
+            }
+            return result;
+
+        }
+
+        private void SortByYear(Book[] array)
+        {
+            for (int i=0;i<array.Length;i++)
+            {
+                for (int j = 0;j < array.Length - i -1; j++)
+                {
+                    if (array[j].year > array[j+1].year)
+                    {
+                        var tmp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+
+        private void DefaultBooksSorting(Book[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 0; j < array.Length - i - 1; j++)
+                {
+                    if (array[j].CompareTo(array[j + 1]) > 1)
+                    {
+                        var tmp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = tmp;
+                    }
+                }
+            }
+        }
     }
 }

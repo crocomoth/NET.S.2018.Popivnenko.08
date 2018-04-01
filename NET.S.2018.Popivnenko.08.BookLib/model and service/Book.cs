@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 
 namespace NET.S._2018.Popivnenko._08.BookLib
 {
+    [Serializable]
     public class Book : IComparable, IEquatable<Book>
     {
         public string ISBN;
         public string title;
         public string author;
         public string publisher;
-        public string year;
+        public int year;
         public int numberOfPages;
         public double price;
 
-        public Book(string iSBN, string author, string publisher,string name, string year, int numberOfPages, double price)
+        public Book(string iSBN, string author, string publisher,string name, int year, int numberOfPages, double price)
         {
             this.ISBN = iSBN ?? throw new ArgumentNullException(nameof(iSBN));
             this.author = author ?? throw new ArgumentNullException(nameof(author));
             this.publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
-            this.year = year ?? throw new ArgumentNullException(nameof(year));
+            if (year > 2019)
+            {
+                throw new ArgumentOutOfRangeException(nameof(year));
+            }
+            this.year = year;
             this.title = name ?? throw new ArgumentNullException(nameof(name));
             if (numberOfPages <= 0)
             {
