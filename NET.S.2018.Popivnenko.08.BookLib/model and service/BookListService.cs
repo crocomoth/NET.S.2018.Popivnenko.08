@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NET.S._2018.Popivnenko._08.BookLib
 {
+    /// <summary>
+    /// Provides basic service to work with <see cref="Book"/> class.
+    /// </summary>
     public class BookListService
     {
         private List<Book> books;
@@ -21,6 +24,12 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             this.books = books;
         }
 
+        /// <summary>
+        /// Adds <see cref="Book"/> to the collection.
+        /// throws <see cref="ArgumentNullException"/> in case parameter is null.
+        /// throws <see cref="BookExistsException"/> case that Book already is in collection.
+        /// </summary>
+        /// <param name="book"><see cref="Book"/> to be added.</param>
         public void AddBook(Book book)
         {
             if (book == null)
@@ -34,6 +43,12 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             books.Add(book);
         }
 
+        /// <summary>
+        /// Removes <see cref="Book"/> from the collection.
+        /// throws <see cref="ArgumentNullException"/> if <see cref="Book"/> is null.
+        /// throws <see cref="BookDoesNotExistException"/> if such object does not exist.
+        /// </summary>
+        /// <param name="book">Book to be removed.</param>
         public void RemoveBook(Book book)
         {
             if (book == null)
@@ -59,6 +74,13 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             return false;
         }
 
+        /// <summary>
+        /// Provides possibility to search for a <see cref="Book"/> of a certain tag in collection.
+        /// throws <see cref="ArgumentException"/> case <paramref name="searchingCriteria"/> is null or empty.
+        /// </summary>
+        /// <param name="tag">Tag to be searched for.</param>
+        /// <param name="searchingCriteria">Actual value to be searched for.</param>
+        /// <returns>List of Books that fall in corresponding criteria.</returns>
         public List<Book> SearchByTag(Tags tag,string searchingCriteria)
         {
             if ((searchingCriteria == null) || (searchingCriteria == String.Empty))
@@ -117,6 +139,11 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             return result;
         }
 
+        /// <summary>
+        /// Provides possibility to sort a list for a Books of a certain tag in collection.
+        /// </summary>
+        /// <param name="tag">Tag to be sorted by</param>
+        /// <returns>List of sorted Books.</returns>
         public List<Book> SortByTag(Tags tag)
         {
             List<Book> result = new List<Book>();

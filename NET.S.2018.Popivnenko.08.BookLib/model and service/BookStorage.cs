@@ -8,6 +8,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
 {
+    /// <summary>
+    /// Provides basic functionality to store Books in binary files.
+    /// </summary>
     public class BookStorage
     {
         private string path;
@@ -22,13 +25,26 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
             this.path = path;
         }
 
+        /// <summary>
+        /// Sets the path where Books will be saved or looked upon.
+        /// </summary>
+        /// <param name="dest">Path to the file which can also not exist.</param>
         public void SetPath(string dest)
         {
             this.path = dest;
         }
 
+        /// <summary>
+        /// Saves List of Books to file specified by path.
+        /// throws ArgumentNullException if parameter is null.
+        /// </summary>
+        /// <param name="books">List to be saved.</param>
         public void SaveToFile(List<Book> books)
         {
+            if (books == null)
+            {
+                throw new ArgumentNullException(nameof(books));
+            }
             FileStream fileStream = new FileStream(this.path, FileMode.OpenOrCreate);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
             foreach (var elem in books)
@@ -39,6 +55,10 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
             binaryWriter.Dispose();
         }
 
+        /// <summary>
+        /// Loads list of Book from a file specified by path.
+        /// </summary>
+        /// <returns>List of loaded Books.</returns>
         public List<Book> LoadFromFile()
         {
             FileStream fileStream = new FileStream(this.path, FileMode.OpenOrCreate);
@@ -53,7 +73,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
             return result;
         }
 
-        public static byte[] SerializeToBytes<Book>(Book item)
+        private static byte[] SerializeToBytes<Book>(Book item)
         {
             var formatter = new BinaryFormatter();
             using (var stream = new MemoryStream())
@@ -64,7 +84,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
             }
         }
 
-        public static object DeserializeFromBytes(byte[] bytes)
+        private static object DeserializeFromBytes(byte[] bytes)
         {
             var formatter = new BinaryFormatter();
             using (var stream = new MemoryStream(bytes))
