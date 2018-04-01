@@ -64,7 +64,7 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
         /// Creates new <see cref="BankAccount"/>.
         /// throws <see cref="ArgumentNullException"/> case any of parameters is null.
         /// </summary>
-        /// <param name="id">Id of a new aacount.</param>
+        /// <param name="id">Id of a new account.</param>
         /// <param name="nameOfOwner">Owner's name.</param>
         /// <param name="surnameOfOwner">Owner's last name.</param>
         /// <param name="gradient">Type of a card. <see cref="Gradient"/></param>
