@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using NET.S._2018.Popivnenko._08.BankAccountProj.API;
-
-namespace NET.S._2018.Popivnenko._08.BankAccountProj.model
+﻿namespace NET.S._2018.Popivnenko._08.BankAccountProj.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using NET.S._2018.Popivnenko._08.BankAccountProj.API;
+
     /// <summary>
     /// Provides functinality to store bank accounts in a binary file.
     /// </summary>
@@ -38,7 +35,7 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.model
         /// <param name="accounts">List of accounts to be stored.</param>
         public void SaveToFile(List<AbstractBankAccount> accounts)
         {
-            FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream(this.path, FileMode.OpenOrCreate);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             try
             {
@@ -61,7 +58,7 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.model
         /// <returns>List of loaded objects.</returns>
         public List<AbstractBankAccount> LoadFromFile()
         {
-            FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream(this.path, FileMode.OpenOrCreate);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             List<AbstractBankAccount> accounts = null;
             try

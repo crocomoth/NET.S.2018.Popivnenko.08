@@ -1,12 +1,9 @@
-﻿using NET.S._2018.Popivnenko._08.BankAccountProj.API;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace NET.S._2018.Popivnenko._08.BankAccountProj.Service
+{    
+    using System;
+    using System.Collections.Generic;
+    using NET.S._2018.Popivnenko._08.BankAccountProj.API;
 
-namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
-{
     /// <summary>
     /// Provdes basic service to work with <see cref="AbstractBankAccount"/>
     /// </summary>
@@ -16,23 +13,7 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
 
         public BankService()
         {
-            bankAccounts = new List<AbstractBankAccount>();
-        }
-
-        private int CalculatePoints(decimal funds, Gradient gradient)
-        {
-            int result = Convert.ToInt32(funds / 100);
-            switch (gradient)
-            {
-                case Gradient.Gold:
-                    result = result * 3;
-                    break;
-                case Gradient.Platinum:
-                    result = result * 5;
-                    break;
-
-            }
-            return result;
+            this.bankAccounts = new List<AbstractBankAccount>();
         }
 
         /// <summary>
@@ -42,21 +23,22 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
         /// <param name="funds">Amount to be added.</param>
         public void AddFundsToAccount(AbstractBankAccount account, decimal funds)
         {
-            account.bonusPoints += CalculatePoints(funds, account.gradient);
+            account.BonusPoints += this.CalculatePoints(funds, account.Gradient);
             account.AddFunds(funds);
         }
 
         public void WithdrawFromAccount(AbstractBankAccount account, decimal funds)
         {
-            int bonusPoints = CalculatePoints(funds, account.gradient);
-            if ((account.bonusPoints - bonusPoints) < 0)
+            int bonusPoints = CalculatePoints(funds, account.Gradient);
+            if ((account.BonusPoints - bonusPoints) < 0)
             {
-                account.bonusPoints = 0;
+                account.BonusPoints = 0;
             }
             else
             {
-                account.bonusPoints -= bonusPoints;
+                account.BonusPoints -= bonusPoints;
             }
+
             account.Withdraw(funds);
         }
 
@@ -79,7 +61,8 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
             {
                 throw e;
             }
-            bankAccounts.Add(bankAccount);
+
+            this.bankAccounts.Add(bankAccount);
         }
 
         /// <summary>
@@ -89,19 +72,35 @@ namespace NET.S._2018.Popivnenko._08.BankAccountProj.service
         public void RemoveAccount(long id)
         {
             AbstractBankAccount account = null;
-            foreach (var elem in bankAccounts)
+            foreach (var elem in this.bankAccounts)
             {
-                if (elem.id == id)
+                if (elem.Id == id)
                 {
                     account = elem;
                     break;
                 }
             }
+
             if (account != null)
             {
-                bankAccounts.Remove(account);
+                this.bankAccounts.Remove(account);
+            }            
+        }
+
+        private int CalculatePoints(decimal funds, Gradient gradient)
+        {
+            int result = Convert.ToInt32(funds / 100);
+            switch (gradient)
+            {
+                case Gradient.Gold:
+                    result = result * 3;
+                    break;
+                case Gradient.Platinum:
+                    result = result * 5;
+                    break;
             }
-            
+
+            return result;
         }
     }
 }

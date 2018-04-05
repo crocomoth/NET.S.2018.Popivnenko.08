@@ -1,4 +1,4 @@
-﻿using NET.S._2018.Popivnenko._08.BookLib.exceptions;
+﻿using NET.S._2018.Popivnenko._08.BookLib.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -166,6 +166,11 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             }
             return result;
 
+        }
+
+        public List<Book> GetBooks()
+        {
+            return this.books;
         }
 
         private void SortByYear(Book[] array)

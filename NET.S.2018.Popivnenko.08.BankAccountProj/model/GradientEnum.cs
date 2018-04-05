@@ -1,1 +1,4 @@
-﻿public enum Gradient { Base,Gold,Platinum};
+﻿public enum Gradient
+{
+    Base, Gold, Platinum
+}
