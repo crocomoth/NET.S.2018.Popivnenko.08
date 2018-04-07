@@ -17,7 +17,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib.model_and_service
         /// <param name="book"><see cref="Book"/> object that will be used as source thus giving context.</param>
         /// <param name="stringFormat">Describes a way for data to be represented.</param>
         /// <returns>String to represent a <see cref="Book"/> object.</returns>
-        public static String ToString(this Book book,StringFormat stringFormat)
+        public static String ToStringExtended(this Book book,StringFormat stringFormat)
         {
             switch (stringFormat)
             {

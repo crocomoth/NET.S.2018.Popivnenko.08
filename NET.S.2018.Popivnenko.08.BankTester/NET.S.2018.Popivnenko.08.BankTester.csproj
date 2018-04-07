@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NET.S.2018.Popivnenko.08.BookLib\NET.S.2018.Popivnenko.08.BookLib.csproj" />
+    <ProjectReference Include="..\NET.S.2018.Popivnenko.08.BankAccountProj\NET.S.2018.Popivnenko.08.BankAccountProj.csproj" />
   </ItemGroup>
 
 </Project>

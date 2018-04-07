@@ -56,10 +56,11 @@ namespace NET.S._2018.Popivnenko._08.BookLib
                 throw new ArgumentNullException(nameof(book));
             }
 
-            if (ContainsBook(book))
+            if (!ContainsBook(book))
             {
-                throw new BookDoesNotExistException("book does already exists");
+                throw new BookDoesNotExistException("book does already exist");
             }
+            books.Remove(book);
         }
 
         private bool ContainsBook(Book book)

@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.S.2018.Popivnenko.08.Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.S.2018.Popivnenko.08.BankAccountProj", "NET.S.2018.Popivnenko.08.BankAccountProj\NET.S.2018.Popivnenko.08.BankAccountProj.csproj", "{677947F7-C3FD-4966-B81E-082B8ECD0D9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.S.2018.Popivnenko.08.BookTester", "NET.S.2018.Popivnenko.08.BookTester\NET.S.2018.Popivnenko.08.BookTester.csproj", "{F04FA59D-67A3-47B3-8DB0-258F92616865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET.S.2018.Popivnenko.08.BookTester", "NET.S.2018.Popivnenko.08.BookTester\NET.S.2018.Popivnenko.08.BookTester.csproj", "{F04FA59D-67A3-47B3-8DB0-258F92616865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.S.2018.Popivnenko.08.BankTester", "NET.S.2018.Popivnenko.08.BankTester\NET.S.2018.Popivnenko.08.BankTester.csproj", "{5BD6FE6B-C201-4000-9E26-7E5E39E4E48C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F04FA59D-67A3-47B3-8DB0-258F92616865}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F04FA59D-67A3-47B3-8DB0-258F92616865}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F04FA59D-67A3-47B3-8DB0-258F92616865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BD6FE6B-C201-4000-9E26-7E5E39E4E48C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD6FE6B-C201-4000-9E26-7E5E39E4E48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD6FE6B-C201-4000-9E26-7E5E39E4E48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD6FE6B-C201-4000-9E26-7E5E39E4E48C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

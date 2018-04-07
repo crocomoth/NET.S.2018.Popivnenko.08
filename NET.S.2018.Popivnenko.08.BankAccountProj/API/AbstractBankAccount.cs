@@ -30,7 +30,7 @@
 
         public abstract decimal Funds { get; protected set; }
 
-        public long Id { get => this.id; set => this.id = value; }
+        public long Id { get => this.id; protected set => this.id = value; }
 
         public string NameOfOwner { get => this.nameOfOwner; set => this.nameOfOwner = value; }
 
