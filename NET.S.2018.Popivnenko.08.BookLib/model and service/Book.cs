@@ -32,7 +32,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         /// <param name="year">Books's year of release.</param>
         /// <param name="numberOfPages">Books's number of pages.</param>
         /// <param name="price">Books's current price.</param>
-        public Book(string iSBN, string author, string publisher,string name, int year, int numberOfPages, double price)
+        public Book(string iSBN, string author, string publisher, string name, int year, int numberOfPages, double price)
         {
             this.ISBN = iSBN ?? throw new ArgumentNullException(nameof(iSBN));
             this.author = author ?? throw new ArgumentNullException(nameof(author));
@@ -41,17 +41,20 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             {
                 throw new ArgumentOutOfRangeException(nameof(year));
             }
+
             this.year = year;
             this.title = name ?? throw new ArgumentNullException(nameof(name));
             if (numberOfPages <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(numberOfPages));
             }
+
             this.numberOfPages = numberOfPages;
             if (price <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(price));
             }
+
             this.price = price;
         }
 
@@ -68,17 +71,19 @@ namespace NET.S._2018.Popivnenko._08.BookLib
             {
                 throw new InvalidCastException(nameof(obj));
             }
+
             if (this.price < comparedBook.price)
             {
                 return -1;
             }
+
             if (this.price > comparedBook.price)
             {
                 return 1;
             }
+
             return 0;
         }
-
 
         /// <summary>
         /// General override to check are the Books equal.
@@ -88,31 +93,36 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         /// <returns>True if equal, false otherwise.</returns>
         public bool Equals(Book other)
         {
-
             if (other == null)
             {
                 throw new ArgumentNullException(nameof(other));
             }
+
             if (this == other)
             {
                 return true;
             }
+
             if (!this.author.Equals(other.author))
             {
                 return false;
             }
+
             if (!this.publisher.Equals(other.publisher))
             {
                 return false;
             }
+
             if (!this.title.Equals(other.title))
             {
                 return false;
             }
+
             if (!this.ISBN.Equals(other.ISBN))
             {
                 return false;
             }
+
             return true;
         }
 

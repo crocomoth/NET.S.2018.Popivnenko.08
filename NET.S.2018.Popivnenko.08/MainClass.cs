@@ -10,7 +10,6 @@ namespace NET.S._2018.Popivnenko._08
     {
         public static void Main()
         {
-
         }
     }
 }

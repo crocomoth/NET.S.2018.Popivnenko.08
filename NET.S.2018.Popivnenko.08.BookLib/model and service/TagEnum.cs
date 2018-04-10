@@ -1,2 +1,4 @@
-﻿
-public enum Tags { author,publisher,year,title,price,pages};
+﻿public enum Tags
+{
+    author, publisher, year, title, price, pages
+}

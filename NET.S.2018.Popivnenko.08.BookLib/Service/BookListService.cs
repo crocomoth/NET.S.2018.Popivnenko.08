@@ -1,9 +1,8 @@
-﻿using NET.S._2018.Popivnenko._08.BookLib.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NET.S._2018.Popivnenko._08.BookLib.Exceptions;
+using NLog;
 
 namespace NET.S._2018.Popivnenko._08.BookLib
 {
@@ -12,16 +11,20 @@ namespace NET.S._2018.Popivnenko._08.BookLib
     /// </summary>
     public class BookListService
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private List<Book> books;
 
         public BookListService()
         {
             this.books = new List<Book>();
+            logger.Info("BookListService created by default constructor");
         }
 
         public BookListService(List<Book> books)
         {
             this.books = books;
+            logger.Info("BookListService created by constructor with parameters");
         }
 
         /// <summary>
@@ -34,12 +37,18 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         {
             if (book == null)
             {
-                throw new ArgumentNullException(nameof(book));
+                ArgumentNullException exception = new ArgumentNullException(nameof(book));
+                logger.Error(exception, "exception at AddBook");
+                throw exception;                
             }
+
             if (ContainsBook(book))
             {
-                throw new BookExistsException("book already exists");
+                BookExistsException exception = new BookExistsException("book already exists");
+                logger.Error(exception, "exception at AddBook");
+                throw exception;
             }
+
             books.Add(book);
         }
 
@@ -53,26 +62,19 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         {
             if (book == null)
             {
-                throw new ArgumentNullException(nameof(book));
+                ArgumentNullException exception = new ArgumentNullException(nameof(book));
+                logger.Error(exception, "exception at RemoveBook");
+                throw exception;
             }
 
             if (!ContainsBook(book))
             {
-                throw new BookDoesNotExistException("book does already exist");
+                BookDoesNotExistException exception = new BookDoesNotExistException("book does already exist");
+                logger.Error(exception, "exception at RemoveBook");
+                throw exception;
             }
-            books.Remove(book);
-        }
 
-        private bool ContainsBook(Book book)
-        {
-            foreach (var elem in books)
-            {
-                if (book.Equals(elem))
-                {
-                    return true;
-                }
-            }
-            return false;
+            books.Remove(book);
         }
 
         /// <summary>
@@ -82,60 +84,70 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         /// <param name="tag">Tag to be searched for.</param>
         /// <param name="searchingCriteria">Actual value to be searched for.</param>
         /// <returns>List of Books that fall in corresponding criteria.</returns>
-        public List<Book> SearchByTag(Tags tag,string searchingCriteria)
+        public List<Book> SearchByTag(Tags tag, string searchingCriteria)
         {
-            if ((searchingCriteria == null) || (searchingCriteria == String.Empty))
+            logger.Info("SearchByTag is called");
+            if ((searchingCriteria == null) || (searchingCriteria == string.Empty))
             {
-                throw new ArgumentException(nameof(searchingCriteria));
+                ArgumentException exception = new ArgumentException(nameof(searchingCriteria));
+                logger.Error(exception, "searchingCriteria in SearchByTag is incorrect");
+                throw exception;
             }
+
             List<Book> result = new List<Book>();
             switch (tag)
             {
                 case Tags.author:
-                    
-                        foreach (var elem in books)
+
+                    logger.Info("Tag = author");
+                    foreach (var elem in books)
+                    {
+                        if (elem.author.Equals(searchingCriteria))
                         {
-                            if (elem.author.Equals(searchingCriteria))
-                            {
-                                result.Add(elem); ;
-                            }
+                            result.Add(elem);
                         }
+                    }
+
                         break;
                 case Tags.publisher:
 
+                    logger.Info("Tag = publisher");
                     foreach (var elem in books)
                     {
                         if (elem.publisher.Equals(searchingCriteria))
                         {
-                            result.Add(elem); ;
+                            result.Add(elem);
                         }
                     }
+
                     break;
 
                 case Tags.title:
 
+                    logger.Info("Tag = title");
                     foreach (var elem in books)
                     {
                         if (elem.title.Equals(searchingCriteria))
                         {
-                            result.Add(elem); ;
+                            result.Add(elem);
                         }
                     }
+
                     break;
 
                 case Tags.year:
 
+                    logger.Info("Tag = year");
                     foreach (var elem in books)
                     {
                         if (elem.year.Equals(searchingCriteria))
                         {
-                            result.Add(elem); ;
+                            result.Add(elem);
                         }
                     }
+
                     break;
-
             }
-
 
             return result;
         }
@@ -147,40 +159,62 @@ namespace NET.S._2018.Popivnenko._08.BookLib
         /// <returns>List of sorted Books.</returns>
         public List<Book> SortByTag(Tags tag)
         {
+            logger.Info("SortByTag called");
             List<Book> result = new List<Book>();
             switch (tag)
             {
                 case Tags.year:
                     {
+                        logger.Info("Tag = year");
                         Book[] booksArray = books.ToArray();
                         SortByYear(booksArray);
                         result = booksArray.ToList();
                         break;
                     }
+
                 case Tags.price:
                     {
+                        logger.Info("Tag = price");
                         Book[] booksArray = books.ToArray();
                         DefaultBooksSorting(booksArray);
                         result = booksArray.ToList();
                         break;
                     }
             }
-            return result;
 
+            return result;
         }
 
         public List<Book> GetBooks()
         {
+            logger.Info("GetBooks is called");
             return this.books;
+        }
+
+        private bool ContainsBook(Book book)
+        {
+            logger.Info("ContainsBook is called");
+            foreach (var elem in books)
+            {
+                if (book.Equals(elem))
+                {
+                    logger.Info("Book found");
+                    return true;
+                }
+            }
+
+            logger.Info("Book is not found");
+            return false;
         }
 
         private void SortByYear(Book[] array)
         {
-            for (int i=0;i<array.Length;i++)
+            logger.Info("SortByYear is called");
+            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = 0;j < array.Length - i -1; j++)
+                for (int j = 0; j < array.Length - i - 1; j++)
                 {
-                    if (array[j].year > array[j+1].year)
+                    if (array[j].year > array[j + 1].year)
                     {
                         var tmp = array[j];
                         array[j] = array[j + 1];
@@ -192,6 +226,7 @@ namespace NET.S._2018.Popivnenko._08.BookLib
 
         private void DefaultBooksSorting(Book[] array)
         {
+            logger.Info("DefaultBooksSorting is called");
             for (int i = 0; i < array.Length; i++)
             {
                 for (int j = 0; j < array.Length - i - 1; j++)

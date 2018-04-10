@@ -9,11 +9,11 @@
     /// </summary>
     public class BankService
     {
-        public List<AbstractBankAccount> bankAccounts;
+        public List<AbstractBankAccount> BankAccounts;
 
         public BankService()
         {
-            this.bankAccounts = new List<AbstractBankAccount>();
+            this.BankAccounts = new List<AbstractBankAccount>();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@
                 throw e;
             }
 
-            this.bankAccounts.Add(bankAccount);
+            this.BankAccounts.Add(bankAccount);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
         public void RemoveAccount(long id)
         {
             AbstractBankAccount account = null;
-            foreach (var elem in this.bankAccounts)
+            foreach (var elem in this.BankAccounts)
             {
                 if (elem.Id == id)
                 {
@@ -83,7 +83,7 @@
 
             if (account != null)
             {
-                this.bankAccounts.Remove(account);
+                this.BankAccounts.Remove(account);
             }            
         }
 

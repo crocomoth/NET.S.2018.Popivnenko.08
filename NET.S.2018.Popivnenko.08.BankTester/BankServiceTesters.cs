@@ -1,22 +1,22 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET.S._2018.Popivnenko._08.BankAccountProj;
 using NET.S._2018.Popivnenko._08.BankAccountProj.API;
 using NET.S._2018.Popivnenko._08.BankAccountProj.Exception;
 using NET.S._2018.Popivnenko._08.BankAccountProj.Service;
-using System.Collections.Generic;
 
 namespace NET.S._2018.Popivnenko._08.BankTester
 {
     [TestClass]
     public class BankServiceTesters
     {
-        private const decimal epsilon = 0.001M;
+        private const decimal Epsilon = 0.001M;
 
         [TestMethod]
         public void BasicBankTestMethod()
         {
             BankService bankService = new BankService();
-            Assert.IsNotNull(bankService.bankAccounts);
+            Assert.IsNotNull(bankService.BankAccounts);
         }
 
         [TestMethod]
@@ -26,8 +26,7 @@ namespace NET.S._2018.Popivnenko._08.BankTester
             BankAccount account = new BankAccount(1, "wdwdw", "wdwdw", Gradient.Base);
             decimal sum = 10;
             bankService.AddFundsToAccount(account, sum);
-            Assert.IsTrue((sum < account.Funds + epsilon) && (sum > account.Funds - epsilon));
-
+            Assert.IsTrue((sum < account.Funds + Epsilon) && (sum > account.Funds - Epsilon));
         }
 
         [TestMethod]
@@ -38,7 +37,7 @@ namespace NET.S._2018.Popivnenko._08.BankTester
             List<AbstractBankAccount> bankAccounts = new List<AbstractBankAccount>();
             bankAccounts.Add(account);
             bankService.CreateAccount(1, "wdwdw", "wdwdw", Gradient.Base);
-            Assert.AreNotEqual(bankAccounts[0], bankService.bankAccounts[0]);
+            Assert.AreNotEqual(bankAccounts[0], bankService.BankAccounts[0]);
         }
 
         [TestMethod]
@@ -60,7 +59,7 @@ namespace NET.S._2018.Popivnenko._08.BankTester
             bankService.AddFundsToAccount(account, sum);
             decimal withdraw = 5;
             bankService.WithdrawFromAccount(account, withdraw);
-            Assert.IsTrue((sum - withdraw < account.Funds + epsilon) && (sum - withdraw > account.Funds - epsilon));
+            Assert.IsTrue((sum - withdraw < account.Funds + Epsilon) && (sum - withdraw > account.Funds - Epsilon));
         }
     }
 }
