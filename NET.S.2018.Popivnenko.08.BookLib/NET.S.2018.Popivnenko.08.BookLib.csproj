@@ -41,14 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model and service\Book.cs" />
-    <Compile Include="model and service\BookExtension.cs" />
-    <Compile Include="model and service\BookListService.cs" />
+    <Compile Include="Service\BookExtension.cs" />
+    <Compile Include="Service\BookListService.cs" />
     <Compile Include="exceptions\BookDoesNotExistException.cs" />
     <Compile Include="exceptions\BookExistsException.cs" />
-    <Compile Include="model and service\BookStorage.cs" />
+    <Compile Include="Service\BookStorage.cs" />
     <Compile Include="model and service\StringFormatEnum.cs" />
     <Compile Include="model and service\TagEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
